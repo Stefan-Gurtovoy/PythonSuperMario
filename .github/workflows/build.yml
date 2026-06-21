@@ -1,15 +1,15 @@
 name: Build Executable
-on: [workflow_dispatch] # Запуск вручную
+on: [workflow_dispatch]
 
 jobs:
   build:
     runs-on: windows-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5  # Обновлено с v4
 
     - name: Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6  # Обновлено с v5
       with:
         python-version: '3.10'
 
@@ -28,7 +28,7 @@ jobs:
         copy dist\main.exe release\SuperMario.exe
 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5  # Обновлено с v4
       with:
         name: SuperMario-Game
         path: release/
