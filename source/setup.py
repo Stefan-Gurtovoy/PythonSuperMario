@@ -8,7 +8,7 @@ from . import tools
 pg.init()
 pg.event.set_allowed([pg.KEYDOWN, pg.KEYUP, pg.QUIT])
 pg.display.set_caption(c.ORIGINAL_CAPTION)
-SCREEN = pg.display.set_mode((800, 600), pg.SCALED)
+SCREEN = pg.display.set_mode((1024, 768), pg.SCALED)
 SCREEN_RECT = SCREEN.get_rect()
 
 GFX = tools.load_all_gfx(os.path.join("resources","graphics"))
