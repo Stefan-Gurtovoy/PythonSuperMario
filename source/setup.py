@@ -5,6 +5,8 @@ import pygame as pg
 from . import constants as c
 from . import tools
 
+# Предварительная инициализация звука для стабильной работы exe-файла
+pg.mixer.pre_init(44100, -16, 2, 1024)
 pg.init()
 pg.event.set_allowed([pg.KEYDOWN, pg.KEYUP, pg.QUIT])
 pg.display.set_caption(c.ORIGINAL_CAPTION)
