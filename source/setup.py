@@ -5,9 +5,15 @@ import pygame as pg
 from . import constants as c
 from . import tools
 
-# Предварительная инициализация звука для стабильной работы exe-файла
-pg.mixer.pre_init(44100, -16, 2, 1024)
+# Полный сброс и жесткая инициализация звука для Windows EXE
+try:
+    pg.mixer.quit()
+    pg.mixer.init(44100, -16, 2, 512)
+except:
+    pass
+
 pg.init()
+
 pg.event.set_allowed([pg.KEYDOWN, pg.KEYUP, pg.QUIT])
 pg.display.set_caption(c.ORIGINAL_CAPTION)
 SCREEN = pg.display.set_mode(c.SCREEN_SIZE, pg.SCALED | pg.RESIZABLE)
