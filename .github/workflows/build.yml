@@ -1,0 +1,34 @@
+name: Build Executable
+on: [workflow_dispatch] # Запуск вручную
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        pip install pygame pyinstaller
+
+    - name: Build EXE
+      run: |
+        pyinstaller --onefile --noconsole main.py
+
+    - name: Prepare Archive
+      run: |
+        mkdir release
+        xcopy /E /I resources release\resources
+        copy dist\main.exe release\SuperMario.exe
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: SuperMario-Game
+        path: release/
